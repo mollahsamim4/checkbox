@@ -3,7 +3,7 @@ window.addEventListener("keydown", function (e) {
     const key=document.querySelector(`.key[data-key="${e.keyCode}"]`);
     if (!audio) return //if audio element not found than stop code
     audio.currentTime = 0 //assing audio currentTime property intp zero
-    console.log(audio.currentTime);
+
     audio.play();
    key.classList.add("playing");
 });
