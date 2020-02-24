@@ -1,52 +1,35 @@
-*{
-    margin:0;
-    padding: 0;
+:root{
+  --color:black;
+  --blur:1px;
+  --space:1px;
+  --rotate:0deg;
+  --scale:1;
 }
-h4{
-   text-align: center;
-   font-size: 30px;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   color:white;
-   font-weight: bolder;
-   border-bottom: 2px double tomato;
-   background: -webkit-linear-gradient(right, skyblue, tomato);
-   background: -o-linear-gradient(right, skyblue, tomato);
-   background: linear-gradient(left, skyblue, tomato);
+#controls{
+  width:600px;
+  height:800px;
+  position: relative;
+  margin: 10px auto;
+  border:3px solid var(--color);
+  box-sizing: border-box;
+
 }
-/*Clock css is given below*/
-/**/
-#clock{
-    width: 250px;
-    height: 250px;
-    transform: translate(500px,36px);
-    border-radius: 50%;
-    background: url(../../assetc/images/clock.png);
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    box-shadow: 1px 3px 0px 31px #401728;
+#controls .control_area{
+  background:var(--color);
+  color: white;
+  font-size:20px;
+  border-bottom: 2px solid var(--color);
 }
-#clock .hand{
-     width: 86px;
-     height: 4px;
-     background: black;
-     position: absolute;
-     transform-origin: 100%;
-     top: 50%;
-     transition:all 0.5s;
-     transform: rotate(90deg);
-     transition-timing-function:ease-out;
-     left: 16%;
-}
+#controls img{
+  width: 100%;
+  height:95%;
+  position: relative;
+  object-fit: cover;
+  background: var(--color);
+  padding:var(--space);
+  filter:blur(var(--blur));
+ transform:rotate(var(--rotate)) scale(var(--scale));
 
 
-#clock .center_area_clock{
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  background: linear-gradient(45deg, black, #36bfff);
-  border-radius: 50%;
-  left: 45%;
-  top: 46%;
+
 }
