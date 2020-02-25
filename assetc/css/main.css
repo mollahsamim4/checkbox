@@ -1,35 +1,53 @@
 :root{
-  --color:black;
-  --blur:1px;
-  --space:1px;
-  --rotate:0deg;
-  --scale:1;
-}
-#controls{
-  width:600px;
-  height:800px;
-  position: relative;
-  margin: 10px auto;
-  border:3px solid var(--color);
-  box-sizing: border-box;
+  --space:0px;
+  --blur:0px;
+  --color:#ffc000;
+  --fontSize:20px;
+  --fantFamily:vardana;
+  --fontColor:#fff;
+
 
 }
-#controls .control_area{
+h4{
+  color: var(--color);
+  font-size:var(--fontSize);
+  font-family: var(--fantFamily);
   background:var(--color);
-  color: white;
-  font-size:20px;
-  border-bottom: 2px solid var(--color);
+  color:var(--fontColor);
 }
-#controls img{
-  width: 100%;
-  height:95%;
-  position: relative;
-  object-fit: cover;
+
+.controls{
+width:800px;
+height: 500px;
+position: relative;
+margin:0 auto;
+}
+.controls .control_area{
   background: var(--color);
-  padding:var(--space);
-  filter:blur(var(--blur));
- transform:rotate(var(--rotate)) scale(var(--scale));
+  color: var(--fontColor);
+
+position:relative;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.controls .img_area{
+position: relative;
+width: 100%;
+height: 100%;
 
 
+}
+.controls .img_area img{
+position: relative;
+    background: var(--color);
+    padding: var(--space);
+    filter: blur(var(--blur));
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
 
 }
