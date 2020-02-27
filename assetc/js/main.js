@@ -1,42 +1,46 @@
-const url=`https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json`;
-
-const cities = [];
-
-fetch(url)
-.then(blob=>blob.json())
-.then(data=>cities.push(...data));
-
-function searchdata(data,cities){
-	return cities.filter(filterdata=>{
-		const regex=new RegExp(data,`gi`);
-		return filterdata.city.match(regex,cities) || filterdata.state.match(regex,cities);
-
-	})
+const canvas=document.querySelector("#draw");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+ctx.strokeStyle="#BADA55";
+ctx.lineJoin="round";
+ctx.lineCap="round";
+ctx.lineWidth=100;
+let isDrawing=false;
+let lastX=0;
+let lastY=0;
+let hue=0;
+let direction=true;
+function draw(e){
+	if(!isDrawing) return //stop Code if isDrawing is false;
+	ctx.strokeStyle=`hsl(${hue},100%,50%)`;
+	console.log(e);
+	ctx.beginPath();
+	ctx.moveTo(lastX,lastY);
+	ctx.lineTo(e.offsetX,e.offsetY);
+	ctx.stroke();
+	[lastX,lastY]=[e.offsetX,e.offsetY];
+	hue++;
+	if(hue>360){
+		hue=0;
+	}
+	if(ctx.lineWidth>=200 || ctx.lineWidth<=1){
+		direction=!direction;
+	}
+	if(direction){
+		ctx.lineWidth++;
+	}
+	else{
+		ctx.lineWidth--;
+	}
 }
-function numberchagnewithcommase(x){
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
-}
-
-function displaySearchData(){
-	const dataMap=searchdata(this.value,cities);
-	const html=dataMap.map(place=>{
-		const replace=new RegExp(this.value,'gi');
-		const name=`<span>${place.city.replace(replace,`<span class="h1"> ${place.city}</span>`)}  ${place.state} </span>`;
-		const population=`<span>${numberchagnewithcommase(place.population)}</span>`;
-		return `
-	
-		<li>${name}  ${population} </li>
-		`;
-
-	}).join("");
-	suggestion.innerHTML=html;
-	console.log(typeof html);
-}
 
 
-const querysearch=document.querySelector(`.querysearch`);
-const suggestion=document.querySelector(`.suggestion`);
-querysearch.addEventListener("change",displaySearchData);
-querysearch.addEventListener("keyup",displaySearchData);
+canvas.addEventListener("mousedown",(e)=>{
+	isDrawing=true;
+	[lastX,lastY]=[e.offsetX,e.offsetY];
+});
+canvas.addEventListener("mousemove",draw);
 
-
+canvas.addEventListener("mouseup",()=>isDrawing=false);
+canvas.addEventListener("mouseout",()=>isDrawing=false);
