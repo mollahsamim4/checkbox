@@ -1,0 +1,9 @@
+.inbox{
+
+}
+.inbox .item{}
+.inbox .item input[type="checkbox"]{}
+p{
+  display: inline;
+
+}
